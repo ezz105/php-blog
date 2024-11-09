@@ -14,7 +14,7 @@
 /tmp/cache/
 
 # Ignore user uploaded files
-/uploads/
+# /uploads/
 
 # Ignore composer lock file
 composer.lock

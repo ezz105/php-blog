@@ -56,7 +56,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $targetFile = $targetDir . basename($_FILES["image"]["name"]);
         $imageFileType = strtolower(pathinfo($targetFile, PATHINFO_EXTENSION));
 
-        $allowedTypes = ['jpg', 'jpeg', 'png', 'gif'];
+        $allowedTypes = ['jpg', 'jpeg', 'png', 'gif', 'jfif', 'webp', 'svg'];
         if (in_array($imageFileType, $allowedTypes)) {
             if (move_uploaded_file($_FILES["image"]["tmp_name"], $targetFile)) {
                 $imageUrl = $targetFile;
