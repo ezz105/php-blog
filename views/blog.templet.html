@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog Posts</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@1.14.0/dist/full.css" rel="stylesheet">
+</head>
+
+<body class="bg-base-100">
+
+<div class="container mx-auto mt-5">
+    <h1 class="text-4xl font-bold text-center mb-4">Blog Posts</h1>
+
+
+    <form action="blog" method="POST" enctype="multipart/form-data" class="mb-4">
+        <div class="form-control mb-3">
+            <label for="title" class="label">
+                <span class="label-text">Title</span>
+            </label>
+            <input type="text" class="input input-bordered" id="title" name="title" required>
+        </div>
+        <div class="form-control mb-3">
+            <label for="content" class="label">
+                <span class="label-text">Content</span>
+            </label>
+            <textarea class="textarea textarea-bordered" id="content" name="content" rows="5" required></textarea>
+        </div>
+        <div class="form-control mb-3">
+            <label for="image" class="label">
+                <span class="label-text">Upload Image</span>
+            </label>
+            <input type="file" class="input input-bordered" id="image" name="image" accept="image/*">
+        </div>
+        <button type="submit" class="btn btn-primary w-full">Add Post</button>
+    </form>
+
+    <hr class="my-4">
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+        <?php if (!empty($posts)): ?>
+            <?php foreach ($posts as $post): ?>
+                <div class="card bg-white shadow-md rounded-lg">
+                    <figure>
+                        <img src="<?= $post['image_url'] ? $post['image_url'] : 'https://via.placeholder.com/150'; ?>" class="rounded-t-lg" alt="Post Image">
+                    </figure>
+                    <div class="card-body">
+                        <h5 class="card-title text-xl font-bold"><?= htmlspecialchars($post['title']); ?></h5>
+                        <p class="card-text text-gray-600"><?= htmlspecialchars(substr($post['content'], 0, 150)) . '...'; ?></p>
+                        <a href="post?id=<?= $post['id']; ?>" class="btn btn-outline btn-primary w-full mt-2">Read More</a>
+                    </div>
+                </div>
+            <?php endforeach; ?>
+        <?php else: ?>
+            <div class="col-span-1 sm:col-span-2 lg:col-span-3 text-center">
+                <p class="text-gray-500">No posts available.</p>
+            </div>
+        <?php endif; ?>
+    </div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,26 @@
+.hero {
+    background-size: cover;
+    background-position: center;
+    height: 400px; 
+}
+
+.post-image {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+}
+
+/* Ensure that the card body fills the available height */
+.card-body {
+    display: flex;
+    flex-direction: column;
+}
+
+/* Optional: add a placeholder for cards without images */
+.card-img {
+    min-height: 200px; /* Ensure the card has some height even without an image */
+    background-color: #f0f0f0; /* Light grey background if no image */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
