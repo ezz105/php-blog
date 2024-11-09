@@ -4,8 +4,12 @@
             <div class="col-md-8 offset-md-2">
                 <!-- Hero Section -->
                 <div class="text-center mb-4">
+                    
                     <h1 class="display-4 text-primary"><?= htmlspecialchars($post['title']); ?></h1>
                     <p class="lead text-muted">Written by <strong>Admin</strong> on <?= date('F j, Y', strtotime($post['created_at'])); ?></p>
+                    <?php if (!empty($post['image_url'])): ?>
+                        <img src="<?= htmlspecialchars($post['image_url']); ?>" alt="Post image" class="img-fluid">
+                    <?php endif; ?>
                 </div>
 
                 <!-- Post Card -->
@@ -31,11 +35,8 @@
                     <a href="blog" class="btn btn-secondary">
                         <i class="bi bi-arrow-left"></i> Back to Blog
                     </a>
-
                     <!-- Edit Post Form -->
-                    <form action="post?id=<?= $post['id']; ?>" method="POST" class="d-inline">
-                        <input type="hidden" name="csrf_token" value="<?= $_SESSION['csrf_token']; ?>">
-                        <input type="hidden" name="edit" value="1">
+                    <form action="edit?id=<?= $post['id']; ?>" method="GET" class="d-inline">
                         <button type="submit" class="btn btn-warning">
                             <i class="bi bi-pencil"></i> Edit Post
                         </button>

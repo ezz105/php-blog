@@ -14,7 +14,7 @@ if (isset($_GET['edit'])) {
     $post = $stmt->fetch(PDO::FETCH_ASSOC);
 
     if (!$post) {
-        header("Location: blog.php");
+        header("Location: blog");
         exit();
     }
 
@@ -29,11 +29,10 @@ if (isset($_GET['edit'])) {
             ':id' => $_GET['edit']
         ]);
 
-        header("Location: blog.php");
+        header("Location: blog");
         exit();
     }
 
-    include 'views/edit-post.php';
     exit();
 }
 
@@ -43,7 +42,7 @@ if (isset($_GET['delete'])) {
         ':id' => $_GET['delete']
     ]);
 
-    header("Location: blog.php");
+    header("Location: blog");
     exit();
 }
 
@@ -72,7 +71,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         ':image_url' => $imageUrl,
     ]);
 
-    header("Location: blog.php");
+    header("Location: blog");
     exit();
 }
 
